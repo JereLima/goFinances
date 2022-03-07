@@ -1,6 +1,8 @@
 import React from "react";
 import HighLightCard from "../../components/HighLightCard";
-import TransactionCard, { TransactionCardProps } from "../../components/TransactionCard";
+import TransactionCard, {
+  TransactionCardProps,
+} from "../../components/TransactionCard";
 
 import {
   Container,
@@ -17,7 +19,6 @@ import {
   Transactions,
   Title,
   TransactionList,
-  
 } from "./styles";
 
 export interface DataListProps extends TransactionCardProps {
@@ -62,11 +63,13 @@ const Dashboard = () => {
                 uri: "https://avatars.githubusercontent.com/u/69019443?s=96&v=4",
               }}
             />
+
             <User>
               <UserGreeting>Olá</UserGreeting>
               <UserName>Jeremias Lima</UserName>
             </User>
           </UserProfile>
+
           <Icon name="power" />
         </UserContainer>
       </Header>
@@ -99,9 +102,8 @@ const Dashboard = () => {
       <TransactionList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({item }) => <TransactionCard data={item} />}
+        renderItem={({ item }) => <TransactionCard data={item} />}
       />
-
     </Container>
   );
 };

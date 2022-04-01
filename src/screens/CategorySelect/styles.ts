@@ -2,13 +2,18 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import styled from "styled-components/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+type CategoryProps = {
+  isActive: boolean;
+};
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const Header = styled.View`
+export const Header = styled(GestureHandlerRootView)`
   height: ${RFValue(113)}px;
   background-color: ${({ theme }) => theme.colors.primary};
   align-items: center;
@@ -21,7 +26,9 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.shape};
 `;
 
-export const Category = styled.View`
+export const Category = styled.TouchableOpacity<CategoryProps>`
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.secondary_light : theme.colors.background};
   width: 100%;
   padding: ${RFValue(15)}px;
   flex-direction: row;

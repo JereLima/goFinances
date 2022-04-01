@@ -29,7 +29,6 @@ interface Props {
 }
 
 const TransactionCard = ({ data }: Props) => {
-  console.log(data)
   return (
     <Container>
       <Title>{data.title}</Title>

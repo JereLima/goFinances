@@ -20,12 +20,19 @@ interface Category {
 }
 
 interface Props {
-  category: string;
+  category: Category;
   setCategory: (category: Category) => void;
-  closeSelectCategory: () => void;
+  closeSelectCategory: (boolean: boolean) => void;
 }
 
-const CategorySelect = (category, setCategory, closeSelectCategory) => {
+const CategorySelect = ({
+  category,
+  setCategory,
+  closeSelectCategory,
+}: Props) => {
+  const handleSaveCategorySelected = (category: Category) => {
+    setCategory(category);
+  };
   return (
     <Container>
       <Header>
@@ -36,7 +43,10 @@ const CategorySelect = (category, setCategory, closeSelectCategory) => {
         data={categories}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
-          <Category>
+          <Category
+            onPress={() => handleSaveCategorySelected(item)}
+            isActive={category.key === item.key}
+          >
             <Icon name={item.icon} />
             <Name>{item.name}</Name>
           </Category>
@@ -45,7 +55,7 @@ const CategorySelect = (category, setCategory, closeSelectCategory) => {
       />
 
       <Footer>
-        <Button title="Selecionar" />
+        <Button title="Selecionar" onPress={() => closeSelectCategory(false)} />
       </Footer>
     </Container>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import AppLoading from "expo-app-loading";
-SafeAreaProvider;
 
 import { ThemeProvider } from "styled-components";
 import {
@@ -17,6 +16,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Register from "./src/screens/Register";
 import CategorySelect from "./src/screens/CategorySelect";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,10 +29,12 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <StatusBar backgroundColor={theme.colors.primary} />
-        <CategorySelect  />
-      </ThemeProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <ThemeProvider theme={theme}>
+          <StatusBar backgroundColor={theme.colors.primary} />
+          <Register />
+        </ThemeProvider>
+      </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 }

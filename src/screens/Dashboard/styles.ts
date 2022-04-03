@@ -5,6 +5,7 @@ import { Feather } from "@expo/vector-icons";
 
 import styled from "styled-components/native";
 import { DataListProps } from ".";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -57,6 +58,8 @@ export const Text = styled.Text`
   font-size: 22px;
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
+
+export const LogoutButton = styled(BorderlessButton)``;
 
 export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.secondary};

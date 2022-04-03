@@ -14,6 +14,7 @@ import {
   UserName,
   Text,
   User,
+  LogoutButton,
   Icon,
   HighLightCards,
   Transactions,
@@ -69,8 +70,10 @@ const Dashboard = () => {
               <UserName>Jeremias Lima</UserName>
             </User>
           </UserProfile>
-
-          <Icon name="power" />
+          
+          <LogoutButton>
+            <Icon name="power" />
+          </LogoutButton>
         </UserContainer>
       </Header>
 

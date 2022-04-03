@@ -9,14 +9,14 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 
+ 
 import theme from "./src/global/styles/theme";
 
-import Dashboard from "./src/screens/Dashboard";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Register from "./src/screens/Register";
-import CategorySelect from "./src/screens/CategorySelect";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { AppRoutes } from "./src/routes/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,7 +32,9 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider theme={theme}>
           <StatusBar backgroundColor={theme.colors.primary} />
-          <Register />
+          <NavigationContainer>
+            <AppRoutes />
+          </NavigationContainer>
         </ThemeProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>

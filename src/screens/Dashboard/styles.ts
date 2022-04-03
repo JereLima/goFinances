@@ -6,6 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import styled from "styled-components/native";
 import { DataListProps } from ".";
 import { BorderlessButton } from "react-native-gesture-handler";
+import theme from "../../global/styles/theme";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -18,6 +19,11 @@ export const Header = styled.View`
   background-color: ${({ theme }) => theme.colors.primary};
   align-items: flex-start;
   flex-direction: row;
+`;
+
+export const LoadContainer = styled.View`
+  flex: 1;
+  background-color: ${({theme}) => theme.colors.primary};
 `;
 
 export const UserContainer = styled.View`

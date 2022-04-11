@@ -7,6 +7,7 @@ import theme from "../global/styles/theme";
 import { useTheme } from "styled-components";
 import { Platform } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import Resume from "../screens/Resume";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -45,7 +46,7 @@ const AppRoutes = () => {
       />
       <Screen
         name="Resumo"
-        component={Register}
+        component={Resume}
         options={{
           tabBarIcon: ({ size, color }) => (
             <IconTab name="pie-chart" size={size} color={color} />

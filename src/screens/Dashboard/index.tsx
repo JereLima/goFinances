@@ -152,14 +152,11 @@ const Dashboard = () => {
           </LogoutButton>
         </UserContainer>
       </Header>
-      {
-        isLoading && (
-          <LoadContainer>
+      {isLoading ? (
+        <LoadContainer>
           <ActivityIndicator size="large" color={theme.colors.shape} />
-          </LoadContainer>
-        )
-      }
-      {!isLoading && (
+        </LoadContainer>
+      ) : (
         <>
           <HighLightCards>
             <HighLightCard

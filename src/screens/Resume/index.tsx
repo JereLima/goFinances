@@ -15,6 +15,7 @@ interface TransactionData {
 }
 
 interface CategoryData {
+  key: string;
   name: string;
   total: string;
   color: string;
@@ -52,15 +53,16 @@ const Resume = () => {
         });
 
         totalByCategory.push({
+          key: category.key,
           name: category.name,
           color: category.color,
           total,
         });
       }
-
-      setTotalByCategories(totalByCategory);
     });
+    setTotalByCategories(totalByCategory);
   };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -71,12 +73,17 @@ const Resume = () => {
         <Title>Teste</Title>
       </Header>
       <Content>
-        {totalByCategories.map((item, index) => (
-          <Title key={index}>{item.name}</Title>
+        {totalByCategories.map((item) => (
+          <HistoryCard
+            key={item.key}
+            amount={item.total}
+            title={item.name}
+            color={item.color}
+          />
         ))}
       </Content>
 
-      <Button onPress={() => loadData()} title="xçxl" />
+      <Button onPress={() => loadData()} title="ver" />
     </Container>
   );
 };

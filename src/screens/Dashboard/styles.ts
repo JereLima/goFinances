@@ -5,6 +5,8 @@ import { Feather } from "@expo/vector-icons";
 
 import styled from "styled-components/native";
 import { DataListProps } from ".";
+import { BorderlessButton } from "react-native-gesture-handler";
+import theme from "../../global/styles/theme";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -17,6 +19,12 @@ export const Header = styled.View`
   background-color: ${({ theme }) => theme.colors.primary};
   align-items: flex-start;
   flex-direction: row;
+`;
+
+export const LoadContainer = styled.View`
+  flex: 1;
+  background-color: ${({theme}) => theme.colors.background};
+  justify-content: center;
 `;
 
 export const UserContainer = styled.View`
@@ -58,6 +66,8 @@ export const Text = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
+export const LogoutButton = styled(BorderlessButton)``;
+
 export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${RFValue(24)}px;
@@ -74,8 +84,7 @@ export const HighLightCards = styled.ScrollView.attrs({
 `;
 
 export const Transactions = styled.View`
-  flex: 1;
-  padding: 0 24px;
+  padding: 24px 24px 0px 24px;
   margin-top: ${RFPercentage(12)}px;
 `;
 

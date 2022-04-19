@@ -1,5 +1,7 @@
 import React from "react";
 import AppLoading from "expo-app-loading";
+import "intl";
+import "intl/locale-data/jsonp/pt-BR";
 
 import { ThemeProvider } from "styled-components";
 import {
@@ -11,12 +13,11 @@ import {
 
 import theme from "./src/global/styles/theme";
 
-import Dashboard from "./src/screens/Dashboard";
-import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Register from "./src/screens/Register";
-import CategorySelect from "./src/screens/CategorySelect";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { AppRoutes } from "./src/routes/routes";
+import { StatusBar } from "react-native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -31,8 +32,13 @@ export default function App() {
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider theme={theme}>
-          <StatusBar backgroundColor={theme.colors.primary} />
-          <Register />
+          <StatusBar
+            backgroundColor={theme.colors.primary}
+            barStyle="light-content"
+          />
+          <NavigationContainer>
+            <AppRoutes />
+          </NavigationContainer>
         </ThemeProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>

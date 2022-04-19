@@ -13,6 +13,7 @@ import {
   Separator,
   Footer,
 } from "./styles";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 interface Category {
   key: string;
@@ -22,7 +23,7 @@ interface Category {
 interface Props {
   category: Category;
   setCategory: (category: Category) => void;
-  closeSelectCategory: (boolean: boolean) => void;
+  closeSelectCategory: () => void;
 }
 
 const CategorySelect = ({
@@ -33,6 +34,7 @@ const CategorySelect = ({
   const handleSaveCategorySelected = (category: Category) => {
     setCategory(category);
   };
+
   return (
     <Container>
       <Header>
@@ -55,7 +57,9 @@ const CategorySelect = ({
       />
 
       <Footer>
-        <Button title="Selecionar" onPress={() => closeSelectCategory(false)} />
+        <GestureHandlerRootView>
+          <Button title="Selecionar" onPress={closeSelectCategory} />
+        </GestureHandlerRootView>
       </Footer>
     </Container>
   );

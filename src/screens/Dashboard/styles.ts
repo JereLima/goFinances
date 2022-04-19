@@ -23,7 +23,8 @@ export const Header = styled.View`
 
 export const LoadContainer = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.colors.primary};
+  background-color: ${({theme}) => theme.colors.background};
+  justify-content: center;
 `;
 
 export const UserContainer = styled.View`
@@ -83,8 +84,7 @@ export const HighLightCards = styled.ScrollView.attrs({
 `;
 
 export const Transactions = styled.View`
-  flex: 1;
-  padding: 0 24px;
+  padding: 24px 24px 0px 24px;
   margin-top: ${RFPercentage(12)}px;
 `;
 

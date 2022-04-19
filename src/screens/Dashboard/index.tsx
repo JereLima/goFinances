@@ -154,7 +154,7 @@ const Dashboard = () => {
       </Header>
       {isLoading ? (
         <LoadContainer>
-          <ActivityIndicator size="large" color={theme.colors.shape} />
+          <ActivityIndicator size="large" color={theme.colors.primary} />
         </LoadContainer>
       ) : (
         <>

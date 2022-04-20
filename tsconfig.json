@@ -1,6 +1,20 @@
 {
   "compilerOptions": {
-    "jsx": "react"
+    "target": "es5",
+    "lib": [
+      "es2015",
+      "esnext.asynciterable"
+    ],
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "types": [
+      "jest"
+    ]
   },
   "extends": "expo/tsconfig.base"
 }

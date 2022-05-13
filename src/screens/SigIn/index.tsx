@@ -18,16 +18,17 @@ import AppleSVG from "../../assets/icons/apple.svg";
 import GoogleSVG from "../../assets/icons/google.svg";
 import { AuthContext } from "../../AuthContext";
 import { AuthProvider, useAuth } from "../../hooks/auth";
+import { Platform } from "react-native";
+
 
 const SigIn = () => {
   const { sigInWhitGoogle } = useAuth();
 
   const handleSigInWithGoogle = async () => {
     try {
-        await sigInWhitGoogle();
-      
+      await sigInWhitGoogle();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -44,9 +45,13 @@ const SigIn = () => {
       </Header>
       <Footer>
         <FooterWrapper>
-          <ButtonSocial svg={GoogleSVG} title="Entrar com Google" onPress={handleSigInWithGoogle} />
+          <ButtonSocial
+            svg={GoogleSVG}
+            title="Entrar com Google"
+            onPress={handleSigInWithGoogle}
+          />
           <Spacing />
-          <ButtonSocial svg={AppleSVG} title="Entrar com Apple" />
+         {Platform.OS === 'ios' && <ButtonSocial svg={AppleSVG} title="Entrar com Apple" />}
         </FooterWrapper>
       </Footer>
     </Container>

@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { VictoryPie } from "victory-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components/native";
+
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { addMonths, subMonths, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -24,6 +25,7 @@ import {
 } from "./styles";
 import { categories } from "../../utils/categories";
 import Button from "../../components/Form/Button";
+import { useAuth } from "../../hooks/auth";
 
 interface TransactionData {
   type: "positive" | "negative";
@@ -51,6 +53,7 @@ const Resume = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const theme = useTheme();
+  const { user} = useAuth();
 
   const handleDateChange = (action: "next" | "prev") => {
     if (action === "next") {
@@ -64,7 +67,7 @@ const Resume = () => {
 
   const loadData = async () => {
     setIsLoading(true);
-    const dataKey = "@goFinances:transactions";
+    const dataKey = `@goFinances:transactions:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormated = response ? JSON.parse(response) : [];
 
@@ -81,8 +84,6 @@ const Resume = () => {
       },
       0
     );
-
-    console.log(expansiveTotal);
 
     const totalByCategory: CategoryData[] = [];
 

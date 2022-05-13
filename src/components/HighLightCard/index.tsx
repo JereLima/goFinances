@@ -15,7 +15,7 @@ interface Props {
   type: 'up'| 'down'|'total';
   title: string;
   amount: string;
-  lastTransactions: string;
+  lastTransactions?: string;
 }
 
 const  icon = {

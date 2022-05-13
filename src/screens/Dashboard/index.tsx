@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useLayoutEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActivityIndicator } from "react-native";
@@ -21,7 +16,6 @@ import {
   ImageProfile,
   UserGreeting,
   UserName,
-  Text,
   User,
   LogoutButton,
   Icon,
@@ -31,9 +25,9 @@ import {
   TransactionList,
   LoadContainer,
 } from "./styles";
-import { number } from "yup/lib/locale";
 import { useFocusEffect } from "@react-navigation/native";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -51,12 +45,13 @@ interface HighlightData {
 
 const Dashboard = () => {
   const theme = useTheme();
+  const { sigOut, user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HighlightData>(
     {} as HighlightData
   );
-  const dataKey = "@goFinances:transactions";
+  const dataKey = `@goFinances:transactions:${user.id}`;
 
   const loadTransactions = async () => {
     const data = await AsyncStorage.getItem(dataKey);
@@ -130,6 +125,8 @@ const Dashboard = () => {
     }, [])
   );
 
+  console.log("data", data);
+
   return (
     <Container>
       <Header>
@@ -137,17 +134,17 @@ const Dashboard = () => {
           <UserProfile>
             <ImageProfile
               source={{
-                uri: "https://avatars.githubusercontent.com/u/69019443?s=96&v=4",
+                uri: user.photo,
               }}
             />
 
             <User>
               <UserGreeting>Olá</UserGreeting>
-              <UserName>Jeremias Lima</UserName>
+              <UserName>{user.name}</UserName>
             </User>
           </UserProfile>
 
-          <LogoutButton>
+          <LogoutButton onPress={() => sigOut()}>
             <Icon name="power" />
           </LogoutButton>
         </UserContainer>
@@ -163,19 +160,16 @@ const Dashboard = () => {
               type="up"
               title="Entradas"
               amount={highlightData.entries.amount}
-              lastTransactions="teste"
             />
             <HighLightCard
               type="down"
               title="Saídas"
               amount={highlightData.expansive.amount}
-              lastTransactions="teste"
             />
             <HighLightCard
               type="total"
               title="Total"
               amount={highlightData.total.amount}
-              lastTransactions="testes"
             />
           </HighLightCards>
 

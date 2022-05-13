@@ -18,6 +18,9 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./src/routes/routes";
 import { StatusBar } from "react-native";
+import SigIn from "./src/screens/SigIn";
+import { AuthProvider, useAuth } from "./src/hooks/auth";
+import Routes from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,9 +39,9 @@ export default function App() {
             backgroundColor={theme.colors.primary}
             barStyle="light-content"
           />
-          <NavigationContainer>
-            <AppRoutes />
-          </NavigationContainer>
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
         </ThemeProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>

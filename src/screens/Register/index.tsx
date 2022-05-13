@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import uuid from 'react-native-uuid'
+import uuid from "react-native-uuid";
 import Button from "../../components/Form/Button";
 import Input from "../../components/Form/Input";
 import Select from "../../components/Form/Select";
@@ -21,6 +21,7 @@ import {
 } from "./styles";
 import InputForm from "../../components/Form/InputForm";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 type FormData = {
   name: string;
@@ -35,8 +36,6 @@ const schema = Yup.object().shape({
     .required("Valor Obrigatório"),
 });
 
-const dataKey = "@goFinances:transactions";
-
 const Register = () => {
   const navigation = useNavigation();
   const [transactionType, setTransactionType] = useState("");
@@ -45,6 +44,10 @@ const Register = () => {
     key: "categoria",
     name: "category",
   });
+
+  const { user } = useAuth();
+
+  const dataKey = `@goFinances:transactions:${user.id}`;
 
   const {
     control,
@@ -76,21 +79,17 @@ const Register = () => {
     };
 
     try {
-      const data = await AsyncStorage.getItem(dataKey)
+      const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
-      const dataFormated = [
-        ...currentData,
-        newTransaction,
-      ]
+      const dataFormated = [...currentData, newTransaction];
 
-      setSelectedCategory({key: 'category', name: 'categoria'})
-      setTransactionType('');
+      setSelectedCategory({ key: "category", name: "categoria" });
+      setTransactionType("");
       reset();
-      navigation.navigate('Listagem');
-      
+      navigation.navigate("Listagem");
+
       await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormated));
     } catch (error) {
-      console.log(error);
       Alert.alert("Não foi possível salvar no momento!");
     }
   };
@@ -114,17 +113,15 @@ const Register = () => {
   useEffect(() => {
     const loadData = async () => {
       const data = await AsyncStorage.getItem(dataKey);
-      console.log(JSON.parse(data));
     };
 
-   loadData();
+    loadData();
 
     // const removeAll = async() => {
     //   await AsyncStorage.removeItem(dataKey);
-    // } 
+    // }
 
     // removeAll();
-
   }, []);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

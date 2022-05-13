@@ -6,7 +6,6 @@ import AppRoutes from "./routes";
 
 const Routes = () => {
   const { user } = useAuth();
-  console.log("##", user);
   return (
     <NavigationContainer>
       {!user.id ? <Auth /> : <AppRoutes />}

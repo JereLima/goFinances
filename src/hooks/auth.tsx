@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import * as AuthSession from "expo-auth-session";
 import { createContext, ReactNode, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CLIENT_ID, REDIRECT_URI } from "@env";
+
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -31,7 +33,7 @@ export const AuthContext = createContext({} as AuthContextData);
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
 
-  const userStorageKey = "@gofinances:user";
+  const userStorageKey = `@goFinances:user:${user.id}`;
 
   const sigOut = async () => {
     setUser({} as User);
@@ -40,9 +42,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const sigInWhitGoogle = async () => {
     try {
-      const CLIENT_ID =
-        "153119559432-jbrck0oc0lcen8od9sr66cblildh1oj8.apps.googleusercontent.com";
-      const REDIRECT_URI = "https://auth.expo.io/@jeremias.lima/gofinances";
       const RESPONSE_TYPE = "token";
       const SCOPE = encodeURI("profile email");
 

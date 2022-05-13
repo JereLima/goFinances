@@ -51,7 +51,9 @@ const SigIn = () => {
             onPress={handleSigInWithGoogle}
           />
           <Spacing />
-         {Platform.OS === 'ios' && <ButtonSocial svg={AppleSVG} title="Entrar com Apple" />}
+          {Platform.OS === "ios" && (
+            <ButtonSocial svg={AppleSVG} title="Entrar com Apple" />
+          )}
         </FooterWrapper>
       </Footer>
     </Container>

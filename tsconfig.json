@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "types": ["...", "@types/jest"],
     "strict": true,
-    "typeRoots": ["./src/@types/env"],
+    "typeRoots": ["node_modules/@types", "./src/@types/env"]
   },
   "extends": "expo/tsconfig.base"
 }

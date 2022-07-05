@@ -66,6 +66,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           photo: userInfo.picture,
         });
       }
+
+      console.log("##$$$", user)
     } catch (error) {
       throw new Error(error);
     }
